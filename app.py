@@ -124,6 +124,18 @@ def noFunciona(error=None):
     response.status_code = 404
     return response
 
+
+@app.route("/usuarios")
+def iniciar():
+    return render_template("iniciarsesion.html")
+
+
+
+
+
+
+
+
 if __name__ == '__main__':
     app.run(debug=True, port=4100)
 
