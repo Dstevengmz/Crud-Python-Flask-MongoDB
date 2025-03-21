@@ -8,7 +8,12 @@ function confirmarGuardar() {
     cancelButtonText: "No,",
   }).then((result) => {
     if (result.isConfirmed) {
-      document.querySelector("form").submit();
+      const form = document.getElementById("form-guardar-producto");
+      if (form) {
+        form.submit();
+      } else {
+        console.error("Formulario no encontrado: form-guardar-producto");
+      }
     }
   });
 }

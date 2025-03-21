@@ -16,6 +16,9 @@
       <h1 class="text-center mt-5 mb-5">
         APP API REST PYTHON FLASK CON MONGODB
       </h1>
+      <form action="{{ url_for('logout') }}" method="get">
+        <button type="submit">Cerrar sesión</button>
+    </form>
       <div class="row">
         <div class="col-md-6 mb-3">
           <div class="card">
@@ -24,6 +27,7 @@
             </div>
             <div class="card-body">
               <form
+                id="form-guardar-producto"
                 action="/productos"
                 method="POST"
                 enctype="multipart/form-data"
@@ -64,11 +68,11 @@
                       <form  id="form-editar-{{ producto.codigo }}" action="/editar/{{ producto.codigo }}" method="POST" enctype="multipart/form-data">
                           <input type="hidden" name="foto_actual" value="{{ producto.foto }}" />
                           <label>Codigo</label>
-                          <input type="text" class="form-control mb-2" value="{{ producto.codigo }}" name="codigo" />
+                          <input type="text" class="form-control mb-2" value="{{ producto.codigo }}" name="codigo" required />
                           <label>Nombre</label>
-                          <input type="text" class="form-control mb-2" value="{{ producto.nombre }}" name="nombre" />
+                          <input type="text" class="form-control mb-2" value="{{ producto.nombre }}" name="nombre"  required />
                           <label>Precio</label>
-                          <input type="text" class="form-control mb-2" value="{{ producto.precio }}" name="precio" />
+                          <input type="text" class="form-control mb-2" value="{{ producto.precio }}" name="precio" required  />
                           <label for="categoria">Categoría</label>
                               <select class="form-control mb-3" name="categoria" id="categoria">
                                 <option value="">Selecciona una categoría</option>
@@ -79,7 +83,7 @@
                                 <option value="alimentos">Alimentos</option>
                               </select>
                           <label>Foto (actual: {{ producto.foto }})</label>
-                          <input type="file" class="form-control mb-2" name="foto" />
+                          <input type="file" class="form-control mb-2" name="foto" required />
                           <button class="btn btn-primary btn-sm" type="button" onclick="confirmarEditar('{{ producto.codigo }}')">Editar</button>
                         </form>
                       <a href="{{ url_for('eliminar', producto_codigo=producto.codigo) }}"  class="btn btn-danger-sm" onclick="confirmarEliminar('{{ producto.codigo }}')">Eliminar
@@ -101,5 +105,7 @@
     ></script>
     <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
     <script src="../static/js/index.js"></script>
+    <script src="{{ url_for('static', filename='js/index.js') }}"></script>
+
   </body>
 </html>
