@@ -11,19 +11,24 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Crud MongoDB Flask Python</title>
   </head>
-  <body>
-    <div class="container">
-      <h1 class="text-center mt-5 mb-5">
-        APP API REST PYTHON FLASK CON MONGODB
-      </h1>
-      <form action="{{ url_for('logout') }}" method="get">
-        <button type="submit">Cerrar sesión</button>
-    </form>
+  <body style="background:#f5f7fb;">
+    <nav class="navbar navbar-expand-lg navbar-light bg-white shadow-sm">
+      <div class="container">
+        <a class="navbar-brand fw-semibold" href="#">Productos</a>
+        <div class="ms-auto">
+          <form class="d-inline" action="{{ url_for('logout') }}" method="get">
+            <button class="btn btn-outline-danger btn-sm" type="submit">Cerrar sesión</button>
+          </form>
+        </div>
+      </div>
+    </nav>
+    <div class="container py-4">
+      <h1 class="h4 text-center mt-2 mb-4">APP CRUD con Flask + MongoDB</h1>
       <div class="row">
         <div class="col-md-6 mb-3">
           <div class="card">
             <div class="card-header">
-              <h5 class="text-center">Alta productos</h5>
+              <h5 class="text-center">Alta de productos</h5>
             </div>
             <div class="card-body">
               <form
@@ -32,7 +37,7 @@
                 method="POST"
                 enctype="multipart/form-data"
               >
-                <label>Codigo</label>
+                <label>Código</label>
                 <input type="text" class="form-control mb-3" name="codigo" />
                 <label>Nombre</label>
                 <input type="text" class="form-control mb-3" name="nombre" />
@@ -49,7 +54,7 @@
                     </select>
                 <label>Foto</label>
                 <input type="file" class="form-control mb-3" name="foto" />
-                <button class="btn btn-primary" type="button"  onclick="confirmarGuardar()">Guardar</button>
+                <button class="btn btn-primary w-100" type="button"  onclick="confirmarGuardar()">Guardar</button>
                   </form>
             </div>
           </div>
@@ -57,7 +62,7 @@
         <div class="col-md-6">
           <div class="card">
             <div class="card-header">
-              <h5 class="text-center">Productos Lista</h5>
+              <h5 class="text-center">Listado de productos</h5>
             </div>
             <div class="card-body">
               <ul class="list-group">
@@ -67,7 +72,7 @@
                     <li class="list-group-item">
                       <form  id="form-editar-{{ producto.codigo }}" action="/editar/{{ producto.codigo }}" method="POST" enctype="multipart/form-data">
                           <input type="hidden" name="foto_actual" value="{{ producto.foto }}" />
-                          <label>Codigo</label>
+                          <label>Código</label>
                           <input type="text" class="form-control mb-2" value="{{ producto.codigo }}" name="codigo" required />
                           <label>Nombre</label>
                           <input type="text" class="form-control mb-2" value="{{ producto.nombre }}" name="nombre"  required />
@@ -84,10 +89,11 @@
                               </select>
                           <label>Foto (actual: {{ producto.foto }})</label>
                           <input type="file" class="form-control mb-2" name="foto" required />
-                          <button class="btn btn-primary btn-sm" type="button" onclick="confirmarEditar('{{ producto.codigo }}')">Editar</button>
+                          <div class="d-flex gap-2">
+                            <button class="btn btn-primary btn-sm" type="button" onclick="confirmarEditar('{{ producto.codigo }}')">Guardar cambios</button>
+                            <a href="{{ url_for('eliminar', producto_codigo=producto.codigo) }}"  class="btn btn-outline-danger btn-sm" onclick="confirmarEliminar(event, '{{ producto.codigo }}')">Eliminar</a>
+                          </div>
                         </form>
-                      <a href="{{ url_for('eliminar', producto_codigo=producto.codigo) }}"  class="btn btn-danger-sm" onclick="confirmarEliminar('{{ producto.codigo }}')">Eliminar
-                        </a>
                     </li>
                   </div>
                   {% endfor %}
@@ -104,7 +110,6 @@
       crossorigin="anonymous"
     ></script>
     <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
-    <script src="../static/js/index.js"></script>
     <script src="{{ url_for('static', filename='js/index.js') }}"></script>
 
   </body>

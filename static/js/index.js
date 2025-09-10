@@ -18,8 +18,8 @@ function confirmarGuardar() {
   });
 }
 
-function confirmarEliminar(codigo) {
-  event.preventDefault();
+function confirmarEliminar(e, codigo) {
+  if (e && e.preventDefault) e.preventDefault();
   Swal.fire({
     title: "¿Estás seguro?",
     text: "Esta seguro de eliminar el producto",

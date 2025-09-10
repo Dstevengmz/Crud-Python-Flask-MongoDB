@@ -35,6 +35,30 @@ def login():
     return render_template('login.html')
 
 
+# Registro de usuarios
+@app.route('/register', methods=['GET', 'POST'])
+def register():
+    if request.method == 'POST':
+        correo = request.form['correo']
+        clave = request.form['clave']
+        confirmar = request.form.get('confirmar')
+
+        if clave != confirmar:
+            flash('Las contraseñas no coinciden', 'danger')
+            return redirect(url_for('register'))
+
+        usuarios = db['usuarios']
+        if usuarios.find_one({'correo': correo}):
+            flash('El correo ya está registrado', 'warning')
+            return redirect(url_for('register'))
+
+        usuarios.insert_one({'correo': correo, 'clave': clave})
+        flash('Registro exitoso. Ahora puedes iniciar sesión.', 'success')
+        return redirect(url_for('login'))
+
+    return render_template('register.html')
+
+
 #Cerrar Sesion
 @app.route('/logout')
 def logout():
