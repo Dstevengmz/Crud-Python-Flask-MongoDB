@@ -89,6 +89,11 @@
                               </select>
                           <label>Foto (actual: {{ producto.foto }})</label>
                           <input type="file" class="form-control mb-2" name="foto" required />
+                           {% if producto.foto %}
+                           <div class="mb-2">
+                             <img src="/{{ producto.foto }}" alt="Imagen del producto" style="max-width: 120px; max-height: 120px; border-radius: 8px; border: 1px solid #ddd;" />
+                           </div>
+                           {% endif %}
                           <div class="d-flex gap-2">
                             <button class="btn btn-primary btn-sm" type="button" onclick="confirmarEditar('{{ producto.codigo }}')">Guardar cambios</button>
                             <a href="{{ url_for('eliminar', producto_codigo=producto.codigo) }}"  class="btn btn-outline-danger btn-sm" onclick="confirmarEliminar(event, '{{ producto.codigo }}')">Eliminar</a>
