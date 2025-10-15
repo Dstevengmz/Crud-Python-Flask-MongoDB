@@ -1,23 +1,44 @@
-Proyecto de Login y Gestión de Productos con Flask, MongoDB y Python
-Este proyecto implementa una sencilla aplicación web utilizando flask mongodb en la nube y python
-Flask, MongoDB y Python
-En este la cual se puede inciar con un login, y se puede agregar, editar y eliminar productos
-con una restricción que impide el acceso a la gestión de productos si el usuario no está logueado.
+# 🛍️ CRUD de Productos con Flask y MongoDB
 
-Tecnologías utilizadas
-Flask: Framework de Python para la creación de aplicaciones web.
-MongoDB: Base de datos NoSQL para almacenar los datos de los productos y usuarios.
-Python: Lenguaje de programación utilizado en todo el proyecto.
+Aplicación web desarrollada con **Flask** (Python) y **MongoDB** para la gestión de productos mediante operaciones CRUD (Crear, Leer, Actualizar y Eliminar). Este proyecto demuestra cómo construir una aplicación web modular utilizando tecnologías modernas y patrones de diseño limpios.
 
-Funcionalidades
-Las Funciones estan en app.py
-en producto esta la estructura de producto
+## 🚀 Características
 
-Login y Logout
+- Listar productos desde la base de datos.
+- Crear nuevos productos con nombre, precio y descripción.
+- Editar información de productos existentes.
+- Eliminar productos de forma segura.
+- Interfaz web simple y funcional.
+- Conexión con MongoDB usando `PyMongo`.
 
-Login: El usuario debe ingresar su correo y contraseña para poder acceder a la plataforma y gestionar productos.
-Si las credenciales son correctas, se le redirige a la página principal.
-Logout: Una vez logueado, el usuario puede cerrar sesión donde tiene un boton, y se redirige a la página de login.
+## 🛠️ Tecnologías utilizadas
 
-Gestión de Productos
-Los templates encontramos el index.html y el login 
+- **Python 3**
+- **Flask**
+- **MongoDB**
+- **PyMongo**
+- **HTML5 + Bootstrap** (para el frontend)
+
+## ⚙️ Instalación y uso
+
+Sigue estos pasos para ejecutar el proyecto en tu entorno local:
+
+1. **Clona el repositorio**
+
+```bash
+git clone https://github.com/tuusuario/tu-repo.git
+cd tu-repo
+```
+2. Crea y activa un entorno virtual (opcional pero recomendado)
+```bash
+python -m venv venv
+source venv/bin/activate  # En Windows: venv\Scripts\activate
+```
+3. Instala las dependencias
+```bash
+pip install -r requirements.txt
+```
+4. Configura la base de datos
+```bash
+MONGO_URI=mongodb://localhost:27017/mi_base_de_datos
+```
