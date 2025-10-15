@@ -42,3 +42,8 @@ pip install -r requirements.txt
 ```bash
 MONGO_URI=mongodb://localhost:27017/mi_base_de_datos
 ```
+5. Ejecuta la aplicación
+```bash
+python app.py
+MONGO_URI=mongodb://localhost:27017/mi_base_de_datos
+```
